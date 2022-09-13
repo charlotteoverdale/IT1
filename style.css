@@ -1,0 +1,142 @@
+ * {
+     margin: 0%;
+     padding: 0%;
+ }
+
+ body {
+     background-color: #f5f5f5;
+     font-family: 'Times New Roman', Times, serif;
+ }
+
+ h4 {
+     background-color: white;
+     border: 2px solid #cccccc;
+     width: 24%;
+     margin: 40px auto;
+     padding: 30px 50px;
+     border-radius: 10px;
+     font-size: 4em;
+     font-style: italic;
+     color: rgb(87, 83, 83);
+ }
+
+ .p1 {
+     background-color: white;
+     border: 2px solid #87b2d9;
+     margin: 20px auto;
+     width: 14%;
+     padding: 10px;
+     font-style: italic;
+ }
+
+ h1 {
+     margin-left: 15%;
+     color: #87b2d9;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+ h3 {
+     background-color: white;
+     border: 2px solid #87b2d9;
+     width: 40%;
+     margin: 40px auto;
+     padding: 30px 50px;
+     border-radius: 10px;
+ }
+
+ .img {
+     padding-left: 230px;
+ }
+
+ .sitat1 {
+     background-color: white;
+     border: 2px solid #cccccc;
+     width: 25%;
+     margin: 40px auto;
+     padding: 40px 50px;
+     border-radius: 10px;
+     margin-top: 2%;
+     margin-left: 8%;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+ .svar1 {
+     background-color: white;
+     border: 2px solid #87b2d9;
+     width: 35%;
+     margin: 40px auto;
+     padding: 40px 50px;
+     border-radius: 10px;
+     margin-top: -11.3%;
+     margin-left: 44%;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+ }
+
+ .sitat2 {
+     background-color: white;
+     border: 2px solid #cccccc;
+     width: 25%;
+     margin: 40px auto;
+     padding: 30px 50px;
+     border-radius: 10px;
+     margin-top: 2%;
+     margin-left: 8%;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+ .svar2 {
+     background-color: white;
+     border: 2px solid #87b2d9;
+     width: 35%;
+     margin: 40px auto;
+     padding: 27px 50px;
+     border-radius: 10px;
+     margin-top: -12%;
+     margin-left: 44%;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+
+ h2 {
+     background-color: white;
+     border: 2px solid #cccccc;
+     width: 17%;
+     margin: 40px auto;
+     padding: 30px 50px;
+     border-radius: 10px;
+     font-size: 2em;
+     font-style: italic;
+     color: rgb(87, 83, 83);
+ }
+
+ .p3 {
+    background-color: white;
+     width: 30%;
+     margin: 40px auto;
+     padding: 30px 50px;
+     border-radius: 10px;
+     font-size: 1em;
+     font-style: initial;
+ }
+
+ .sitat3 {
+    background-color: white;
+    width: 30%;
+    margin: 40px auto;
+    padding: 30px 50px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-style: initial;
+ }
+
+ .ut {
+     background-color: white;
+     border: 2px solid #cccccc;
+     width: 24%;
+     margin: 40px auto;
+     padding: 30px 50px;
+     border-radius: 10px;
+     font-size: 1.3em;
+     font-style: italic;
+     color: rgb(87, 83, 83);
+ }
