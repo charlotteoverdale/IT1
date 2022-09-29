@@ -1,0 +1,75 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    /* her har jeg satt en bakgrunnsfarge på hele nettsiden*/
+    background-color: rgb(1, 4, 30);
+}
+
+.tilbake:active{
+    transform: rotate(180deg);
+}
+
+.forside {
+    /* margin som jeg har brukt mye, plasserer bbildene og tabellene med ønsket avstand*/
+    margin-left: 175px;
+    margin-top: 40px;
+
+}
+
+table {
+    margin-top: 30px;
+}
+
+td,
+.nestesesong {
+    color: white;
+    margin-left: 40px;
+}
+
+.nestesesong {
+    /* her er det laget en liten boks rundt neste sesong, som også er en lenke.*/
+    width: 5%;
+    font-size: small;
+    margin-top: 10px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.033);
+    border: 1px solid #494648e0;
+}
+
+
+.tabell {
+    padding: 5px;
+}
+
+.sesong {
+    color: white;
+    font-style: italic;
+    width: 24%;
+    margin: 100px auto;
+
+}
+
+h1 {
+    color: white;
+    margin: 40px;
+}
+
+p {
+    color: white;
+    font-size: 8mm;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+.sesongene {
+    /*her har jeg laget en boks og midt stilt listen over sesongene.*/
+    width: 24%;
+    margin: 100px auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.033);
+    border: 1px solid #494648e0;
+    color: white;
+}
