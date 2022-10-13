@@ -1,0 +1,49 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background-color: beige;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: gray;
+}
+
+#Hoved {
+    width: 60%;
+    text-align: center;
+    margin: 60px auto;
+    padding: 80px;
+    background-color: white;
+    border: 1px solid #cccccc;
+}
+
+#Meny {
+    display: flex;
+}
+
+#Meny img {
+    width: 110px;
+    border-radius: 100%;
+}
+
+#Meny :hover {
+    color: red;
+    transform: scale(1.5);
+
+}
+
+#Meny :active {
+    transform: rotate(180deg);
+}
+
+a {
+    background-color: #90d89b;
+    flex-grow: 1;
+    margin: 10px;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    transition-duration:1000ms;
+}
+
