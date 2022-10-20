@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: lightpink;
+        text-align: center;
+    }
+
+    div {
+        padding: 5px;
+        background-color: beige;
+        float: left;
+    }
+
+    section {
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: repeat(18, 1fr);
+        justify-content: space-between
+    }
+
+    .span-16 {
+        grid-column: span 16;
+        opacity: 0;
+    }
+
+    .span-10 {
+        grid-column: span 10;
+        opacity: 0;
+    }
+
+    h1 {
+        font-style: italic;
+    }
+
+    .latanoider,
+    .aktinoider {
+        grid-column: span 1;
+        opacity: 0;
+    }
+
+    .oider {
+        grid-column: span 3;
+        grid-row: span 3;
+        opacity: 0;
+    }
+
+    .mellom {
+        grid-column: span 18;
+        opacity: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .metaller {
+        background-color: rgb(97, 204, 204);
+    }
+
+    .ikkemetall {
+        background-color: pink;
+    }
+
+    .halvmetall {
+        background-color: plum;
+    }
+
+    .lantanid {
+        background-color: lightgreen;
+    }
+
+    .aktin {
+        background-color: lightblue;
+    }
+
+    h3 {
+        width: 10%;
+        margin: 5px auto;
+        padding: 5px;
+    }
+</style>
+
+<body>
+    <h1> -- PERIDOESYSTEMET -- </h1>
+
+    <h3 class="metaller">Metaller</h3>
+    <h3 class="ikkemetall">Ikke-metaller</h3>
+    <h3 class="halvmetall">Halv-metaller</h3>
+    <h3 class="lantanid">Latan-oider</h3>
+    <h3 class="aktin">Aktin-oider</h3>
+
+    <section>
+        <div class="ikkemetall">1
+            <h1>H</h1>
+            <a href="https://snl.no/hydrogen">Hydrogen</a>
+        </div>
+        <div class="span-16">mellomrom</div>
+        <div class="ikkemetall">2
+            <h1>He</h1>
+            <a href="https://snl.no/helium">Helium</a>
+        </div>
+        <div class="metaller">3
+            <h1>Li</h1>
+            <a href="https://snl.no/litium">Litium</a>
+        </div>
+        <div class="metaller">4
+            <h1>Be</h1>
+            <a href="https://snl.no/beryllium">Beryllium</a>
+        </div>
+        <div class="span-10">mellomrom</div>
+        <div class="halvmetall">5
+            <h1>B</h1>
+            <a href="https://snl.no/bor_-_grunnstoff">Bor</a>
+        </div>
+        <div class="ikkemetall">6
+            <h1>C</h1>
+            <a href="https://snl.no/karbon">Karbon</a>
+        </div>
+        <div class="ikkemetall">7
+            <h1>N</h1>
+            <a href="https://snl.no/nitrogen">Nitrogen</a>
+        </div>
+        <div class="ikkemetall">8
+            <h1>O</h1>
+            <a href="https://snl.no/oksygen">Oksygen</a>
+        </div>
+        <div class="ikkemetall">9
+            <h1>F</h1>
+            <a href="https://snl.no/fluor">Flour</a>
+        </div>
+        <div class="ikkemetall">10
+            <h1>Ne</h1>
+            <a href="https://snl.no/neon">Neon</a>
+        </div>
+        <div class="metaller">11
+            <h1>Na</h1>
+            <a href="https://snl.no/natrium">Natrium</a>
+        </div>
+        <div class="metaller">12
+            <h1>Mg</h1>
+            <a href="https://snl.no/magnesium">Magnesium</a>
+        </div>
+        <div class="span-10">mellomrom</div>
+        <div class="metaller">13
+            <h1>Al</h1>
+            <a href="https://snl.no/aluminium">Aluminium</a>
+        </div>
+        <div class="halvmetall">14
+            <h1>Si</h1>
+            <a href="https://snl.no/silisium">Silisium</a>
+        </div>
+        <div class="ikkemetall">15
+            <h1>P</h1>
+            <a href="https://snl.no/fosfor">Fosfor</a>
+        </div>
+        <div class="ikkemetall">16
+            <h1>S</h1>
+            <a href="https://snl.no/svovel">Svovel</a>
+        </div>
+        <div class="ikkemetall">17
+            <h1>Cl</h1>
+            <a href="https://snl.no/klor">Klor</a>
+        </div>
+        <div class="ikkemetall">18
+            <h1>Ar</h1>
+            <a href="https://snl.no/argon">Argon</a>
+        </div>
+        <div class="metaller">19
+            <h1>K</h1>
+            <a href="https://snl.no/kalium">Kalium</a>
+        </div>
+        <div class="metaller">20
+            <h1>Ca</h1>
+            <a href="https://snl.no/kalsium">Kalsium</a>
+        </div>
+        <div class="metaller">21
+            <h1>Sc</h1>
+            <a href="https://snl.no/scandium">Scandium</a>
+        </div>
+        <div class="metaller">22
+            <h1>Ti</h1>
+            <a href="https://snl.no/titan">Titan</a>
+        </div>
+        <div class="metaller">23
+            <h1>V</h1>
+            <a href="https://snl.no/vanadium">Vanadium</a>
+        </div>
+        <div class="metaller">24
+            <h1>Cr</h1>
+            <a href="https://snl.no/krom">Krom</a>
+        </div>
+        <div class="metaller">25
+            <h1>Mn</h1>
+            <a href="https://snl.no/mangan">Mangan</a>
+        </div>
+        <div class="metaller">26
+            <h1>Fe</h1>
+            <a href="https://snl.no/jern">Jern</a>
+        </div>
+        <div class="metaller">27
+            <h1>Co</h1>
+            <a href="https://snl.no/kobolt">Kobolt</a>
+        </div>
+        <div class="metaller">28
+            <h1>Ni</h1>
+            <a href="https://snl.no/nikkel">Nikkel</a>
+        </div>
+        <div class="metaller">29
+            <h1>Cu</h1>
+            <a href="https://snl.no/kobber">Kobber</a>
+        </div>
+        <div class="metaller">30
+            <h1>Zn</h1>
+            <a href="https://snl.no/sink">Sink</a>
+        </div>
+        <div class="metaller">31
+            <h1>Ga</h1>
+            <a href="https://snl.no/gallium">Gallium</a>
+        </div>
+        <div class="halvmetall">32
+            <h1>Ge</h1>
+            <a href="https://snl.no/germanium">Germanium</a>
+        </div>
+        <div class="halvmetall">33
+            <h1>As</h1>
+            <a href="https://snl.no/arsen">Arsen</a>
+        </div>
+        <div class="ikkemetall">34
+            <h1>Se</h1>
+            <a href="https://snl.no/selen">Selen</a>
+        </div>
+        <div class="ikkemetall">35
+            <h1>Br</h1>
+            <a href="https://snl.no/brom">Brom</a>
+        </div>
+        <div class="ikkemetall">36
+            <h1>Kr</h1>
+            <a href="https://snl.no/krypton">Krypton</a>
+        </div>
+        <div class="metaller">37
+            <h1>Rb</h1>
+            <a href="https://snl.no/rubidium">Rubidium</a>
+        </div>
+        <div class="metaller">38
+            <h1>Sr</h1>
+            <a href="https://snl.no/strontium">Strontium</a>
+        </div>
+        <div class="metaller">39
+            <h1>Y</h1>
+            <a href="https://snl.no/yttrium">Yttrium</a>
+        </div>
+        <div class="metaller">40
+            <h1>Zr</h1>
+            <a href="https://snl.no/zirkonium">Zirkonium</a>
+        </div>
+        <div class="metaller">41
+            <h1>Nb</h1>
+            <a href="https://snl.no/niob">Niobium</a>
+        </div>
+        <div class="metaller">42
+            <h1>Mo</h1>
+            <a href="https://snl.no/molybden">Molybde</a>
+        </div>
+        <div class="metaller">43
+            <h1>Tc</h1>
+            <a href="https://snl.no/technetium">Technetium</a>
+        </div>
+        <div class="metaller">44
+            <h1>Ru</h1>
+            <a href="https://snl.no/ruthenium">Ruthenium</a>
+        </div>
+        <div class="metaller">45
+            <h1>Rh</h1>
+            <a href="https://snl.no/rhodium">Rhodium</a>
+        </div>
+        <div class="metaller">46
+            <h1>Pd</h1>
+            <a href="https://snl.no/palladium">Palladium</a>
+        </div>
+        <div class="metaller">47
+            <h1>Ag</h1>
+            <a href="https://snl.no/s%C3%B8lv">Sølv</a>
+        </div>
+        <div class="metaller">48
+            <h1>Cd</h1>
+            <a href="https://snl.no/kadmium">Kadmium</a>
+        </div>
+        <div class="metaller">49
+            <h1>In</h1>
+            <a href="https://snl.no/indium">Indium</a>
+        </div>
+        <div class="metaller">50
+            <h1>Sn</h1>
+            <a href="https://snl.no/tinn">Tinn</a>
+        </div>
+        <div class="metaller">51
+            <h1>Sb</h1>
+            <a href="https://snl.no/antimon">Antimon</a>
+        </div>
+        <div class="halvmetall">52
+            <h1>Te</h1>
+            <a href="https://snl.no/tellur">Tellur</a>
+        </div>
+        <div class="ikkemetall">53
+            <h1>I</h1>
+            <a href="https://snl.no/jod">Jod</a>
+        </div>
+        <div class="ikkemetall">54
+            <h1>Xe</h1>
+            <a href="https://snl.no/xenon">Xenon</a>
+        </div>
+        <div class="metaller">55
+            <h1>Cs</h1>
+            <a href="https://snl.no/cesium">Cesium</a>
+        </div>
+        <div class="metaller">56
+            <h1>Ba</h1>
+            <a href="https://snl.no/barium">Barium</a>
+        </div>
+        <div class="latanoider">57-71
+        </div>
+        <div class="metaller">72
+            <h1>Hf</h1>
+            <a href="https://snl.no/hafnium">Hafnium</a>
+        </div>
+        <div class="metaller">73
+            <h1>Ta</h1>
+            <a href="https://snl.no/tantal">Tantal</a>
+        </div>
+        <div class="metaller">74
+            <h1>W</h1>
+            <a href="https://snl.no/wolfram">Wolfram</a>
+        </div>
+        <div class="metaller">75
+            <h1>Re</h1>
+            <a href="https://snl.no/rhenium">Rhenium</a>
+        </div>
+        <div class="metaller">76
+            <h1>Os</h1>
+            <a href="https://snl.no/osmium">Osmium</a>
+        </div>
+        <div class="metaller">77
+            <h1>Ir</h1>
+            <a href="https://snl.no/iridium">Iridium</a>
+        </div>
+        <div class="metaller">78
+            <h1>Pt</h1>
+            <a href="https://snl.no/platina">Platina</a>
+        </div>
+        <div class="metaller">79
+            <h1>Au</h1>
+            <a href="https://snl.no/gull">Gull</a>
+        </div>
+        <div class="metaller">80
+            <h1>Hg</h1>
+            <a href="https://snl.no/kvikks%C3%B8lv">Kvikksølv</a>
+        </div>
+        <div class="metaller">81
+            <h1>Tl</h1>
+            <a href="https://snl.no/thallium">Thallium</a>
+        </div>
+        <div class="metaller">82
+            <h1>Pb</h1>
+            <a href="https://snl.no/bly">Bly</a>
+        </div>
+        <div class="metaller">83
+            <h1>Bi</h1>
+            <a href="https://snl.no/vismut">Vismut</a>
+        </div>
+        <div class="metaller">84
+            <h1>Po</h1>
+            <a href="https://snl.no/polonium">Polonium</a>
+        </div>
+        <div class="ikkemetall">85
+            <h1>At</h1>
+            <a href="https://snl.no/astat">Astat</a>
+        </div>
+        <div class="ikkemetall">86
+            <h1>Rn</h1>
+            <a href="https://snl.no/radon">Radon</a>
+        </div>
+        <div class="metaller">87
+            <h1>Fr</h1>
+            <a href="https://snl.no/francium">Francium</a>
+        </div>
+        <div class="metaller">88
+            <h1>Ra</h1>
+            <a href="https://snl.no/radium">Radium</a>
+        </div>
+        <div class="aktinoider">89-103</div>
+        <div class="metaller">104
+            <h1>Rf</h1>
+            <a href="https://snl.no/rutherfordium">Rutherfordium</a>
+        </div>
+        <div class="metaller">105
+            <h1>Db</h1>
+            <a href="https://snl.no/dubnium">Dubnium</a>
+        </div>
+        <div class="metaller">106
+            <h1>Sg</h1>
+            <a href="https://snl.no/seaborgium">Seaborgium </a>
+        </div>
+        <div class="metaller">107
+            <h1>Bh</h1>
+            <a href="https://snl.no/bohrium">Bohrium</a>
+        </div>
+        <div class="metaller">108
+            <h1>Hs</h1>
+            <a href="https://snl.no/hassium">Hassium</a>
+        </div>
+        <div class="metaller">109
+            <h1>Mt</h1>
+            <a href="https://snl.no/meitnerium">Meitnerium</a>
+        </div>
+        <div class="metaller">110
+            <h1>Ds</h1>
+            <a href="https://snl.no/darmstadtium">Darmstadtium</a>
+        </div>
+        <div class="metaller">111
+            <h1>Rg</h1>
+            <a href="https://snl.no/r%C3%B8ntgenium">Rontgenium</a>
+        </div>
+        <div class="metaller">112
+            <h1>Cn</h1>
+            <a href="https://snl.no/copernicium">Copernicium</a>
+        </div>
+        <div class="metaller">113
+            <h1>Nh</h1>
+            <a href="https://snl.no/nihonium">Nihonium</a>
+        </div>
+        <div class="metaller">114
+            <h1>Fl</h1>
+            <a href="https://snl.no/flerovium">Flerovium</a>
+        </div>
+        <div class="metaller">115
+            <h1>Mc</h1>
+            <a href="https://snl.no/moscovium">Moscovium</a>
+        </div>
+        <div class="metaller">116
+            <h1>Lv</h1>
+            <a href="https://snl.no/livermorium">Livermorium</a>
+        </div>
+        <div class="metaller">117
+            <h1>Ts</h1>
+            <a href="https://snl.no/tenness">Tenness</a>
+        </div>
+        <div class="metaller">118
+            <h1>Og</h1>
+            <a href="https://snl.no/oganesson">Oganesson</a>
+        </div>
+        <div class="mellom"> mellomrom</div>
+        <div class="oider"> mellomrom </div>
+        <div class="latanid">57
+            <h1>La</h1>
+            <a href="https://snl.no/lantan">Lantan</a>
+        </div>
+        <div class="latanid">58
+            <h1>Ce</h1>
+            <a href="https://snl.no/cerium">Cerium</a>
+        </div>
+        <div class="latanid">59
+            <h1>Pr</h1>
+            <a href="https://snl.no/praseodym">Praseodym</a>
+        </div>
+        <div class="latanid">60
+            <h1>Nd</h1>
+            <a href="https://snl.no/neodym">Neodym</a>
+        </div>
+        <div class="latanid">61
+            <h1>Pm</h1>
+            <a href="https://snl.no/promethium">Promethium</a>
+        </div>
+        <div class="latanid">62
+            <h1>Sm</h1>
+            <a href="https://snl.no/samarium">Samarium</a>
+        </div>
+        <div class="latanid">63
+            <h1>Eu</h1>
+            <a href="https://snl.no/europium">Europium</a>
+        </div>
+        <div class="latanid">64
+            <h1>Gd</h1>
+            <a href="https://snl.no/gadolinium">Gadolinium</a>
+        </div>
+        <div class="latanid">65
+            <h1>Tb</h1>
+            <a href="https://snl.no/terbium">Terbium</a>
+        </div>
+        <div class="latanid">66
+            <h1>Dy</h1>
+            <a href="https://snl.no/dysprosium">Dysprosium </a>
+        </div>
+        <div class="latanid">67
+            <h1>Ho</h1>
+            <a href="https://snl.no/holmium">Holmium</a>
+        </div>
+        <div class="latanid">68
+            <h1>Er</h1>
+            <a href="https://snl.no/erbium">Erbiu</a>
+        </div>
+        <div class="latanid">69
+            <h1>Tm</h1>
+            <a href="https://snl.no/thulium">Thulium</a>
+        </div>
+        <div class="latanid">70
+            <h1>Yb</h1>
+            <a href="https://snl.no/ytterbium">Ytterbium</a>
+        </div>
+        <div class="latanid">71
+            <h1>Lu</h1>
+            <a href="https://snl.no/lutetium">Lutetium</a>
+        </div>
+        <div class="aktin">89
+            <h1>Ac</h1>
+            <a href="https://snl.no/actinium">Actinium</a>
+        </div>
+        <div class="aktin">90
+            <h1>Th</h1>
+            <a href="https://snl.no/thorium">Thorium</a>
+        </div>
+        <div class="aktin">91
+            <h1>Pa</h1>
+            <a href="https://snl.no/protactinium">Protactinium</a>
+        </div>
+        <div class="aktin">92
+            <h1>U</h1>
+            <a href="https://snl.no/uran">Uran</a>
+        </div>
+        <div class="aktin">93
+            <h1>Np</h1>
+            <a href="https://snl.no/neptunium">Neptunium</a>
+        </div>
+        <div class="aktin">94
+            <h1>Pu</h1>
+            <a href="https://snl.no/plutonium">Plutonium</a>
+        </div>
+        <div class="aktin">95
+            <h1>Am</h1>
+            <a href="https://snl.no/americium">Americium</a>
+        </div>
+        <div class="aktin">96
+            <h1>Cm</h1>
+            <a href="https://snl.no/curium">Curium</a>
+        </div>
+        <div class="aktin">97
+            <h1>Bk</h1>
+            <a href="https://snl.no/berkelium">Berkelium</a>
+        </div>
+        <div class="aktin">98
+            <h1>Cf</h1>
+            <a href="https://snl.no/californium">Californium</a>
+        </div>
+        <div class="aktin">99
+            <h1>Es</h1>
+            <a href="https://snl.no/einsteinium">Einsteinium</a>
+        </div>
+        <div class="aktin">100
+            <h1>Fm</h1>
+            <a href="https://snl.no/fermium">Fermium</a>
+        </div>
+        <div class="aktin">101
+            <h1>Md</h1>
+            <a href="https://snl.no/mendelevium">Mendelevium</a>
+        </div>
+        <div class="aktin">102
+            <h1>No</h1>
+            <a href="https://snl.no/nobelium">Nobelium</a>
+        </div>
+        <div class="aktin">103
+            <h1>Lr</h1>
+            <a href="https://snl.no/lawrencium">Lawrencium</a>
+
+        </div>
+
+    </section>
+</body>
+
+</html>
