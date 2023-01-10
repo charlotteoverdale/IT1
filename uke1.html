@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        /*************************************************************************/
+        /* Navn: erLik (tall1, tall2)                                            */
+        /* Funksjonen summerer tall1 og tall2 om de er like og returnerer summen,*/
+        /* er tallene ulike returneres det false                                 */
+        /*     tall1: et tall                                                    */
+        /*     tall2: et tall                                                    */
+        /* Funksjonen returnerer summen av de to like talkene.  Hvis             */
+        /* en av parameterene er ulike vil funksjonen returnere «false».         */
+        /*************************************************************************/
+        function erLik(tall1, tall2) {
+            if (tall1 === tall2) {
+                return tall1 + tall2;
+            } else {
+                return false;
+            }
+        }
+        alert(erLik(5, 5));
+
+    </script>
+
+    <script>
+        /************************************************************************/
+        /* Navn: likeTall (tall1, tall2,tall3)                                   */
+        /* Funksjonen summerer 2 tall om de er like og returnerer summen,        */
+        /* er alle tre tallene ulike returneres det false                        */
+        /*     tall1: et tall                                                    */
+        /*     tall2: et tall                                                    */
+        /*     tall3: et tall                                                    */
+        /* Funksjonen returnerer summen av de to like talkene.  Hvis             */
+        /* to av parameterene er ulike vil funksjonen returnere «false».         */
+        /*************************************************************************/
+        function likeTall(tall1, tall2, tall3) {
+            if (tall1 === tall2 || tall1 === tall3 || tall2 === tall3) {
+                return tall1 + tall2;
+            }
+            return false;
+        }
+        alert(likeTall(3, 8, 5))
+
+    </script>
+
+    <script>
+        /**************************************************************************************/
+        /* Navn: sammenlignFire (a,b,c,d)                                                     */
+        /* Funksjonen summerer de to høyeste sifferene om det er 2 like parabler i funkjsonen */
+        /* og returnerer summen, er det ingen like tall returneres det false                  */
+        /*     a: et tall                                                                     */
+        /*     b: et tall                                                                     */
+        /*     c: et tall                                                                     */
+        /*     d: et tall                                                                     */
+        /* Funksjonen returnerer summen av de to høyeste sifferene Hvis                       */
+        /* ikke to av parameterene er like vil funksjonen returnere «false».                  */
+        /**************************************************************************************/
+
+        function sammenlignFire(a, b, c, d) {
+            if (a === b || a === c || a === d || b === c || b === d || c === d) {
+                const sorted = [a, b, c, d].sort(function (a, b) { return b - a; });
+                return sorted[0] + sorted[1];
+            } else {
+                return false;
+            }
+        }
+        alert(sammenlignFire(2, 6, 2, 5))
+    </script>
+
+
+    <script>
+        /****************************************************************************************/
+        /* Navn: sammenligneFem (a,b,c,d,e)                                                     */
+        /* Funksjonen summerer de to høyeste sifferene om det er 2 like parabler i funkjsonen   */
+        /* og returnerer summen, er det ingen like tall returneres det false                    */
+        /*     a: et tall                                                                       */
+        /*     b: et tall                                                                       */
+        /*     c: et tall                                                                       */
+        /*     d: et tall                                                                       */
+        /*     e: et tall                                                                       */
+        /* Funksjonen returnerer summen av de to høyeste sifferene Hvis                         */
+        /* ikke to av parameterene er like vil funksjonen returnere «false».                    */
+        /****************************************************************************************/
+
+        function sammenligneFem(a, b, c, d, e) {
+            if (a === b || a === c || a === d || a === e || b === c || b === d || b === e || c === d || c === e || d === e) {
+                const sorted = [a, b, c, d, e].sort(function (a, b) { return b - a; });
+                return sorted[0] + sorted[1];
+            } else {
+                return false;
+            }
+        }
+        alert(sammenligneFem(2, 5, 5, 7, 8))
+    </script>
+
+    <script>
+        /***************************************************************************************/
+        /* Navn: finndeTostørste(arr)                                                          */
+        /* Funksjonen summerer de to høyeste sifferene i arrayen om det kun er  ulike parabler */
+        /* i funkjsonen og returnerer summen, er det like tall returneres det false            */
+        /*     arr: en tallrekke                                                               */
+        /* Funksjonen returnerer summen av de to høyeste sifferene hvis ingen siffer           */
+        /*  i arrayene r like, er flere samme siffer vil funksjonen returnere «false».         */
+        /****************************************************************************************/
+
+        function finndeTostørste(arr) {
+            let tall1 = 0;
+            let tall2 = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] > tall1) {
+                    tall2 = tall1;
+                    tall1 = arr[i];
+                } else if (arr[i] > tall2) {
+                    tall2 = arr[i];
+                }
+            }
+            if (tall1 === tall2) {
+                return false;
+            } else {
+                return tall1 + tall2;
+            }
+        }
+        alert(finndeTostørste([1, 2, 3, 4])); // 7
+    </script>
+
+</body>
+
+</html>
