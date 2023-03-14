@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        body {
+            background-color: #b3acac;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>La oss spille</h1>
+    <p>Lag sirkler, start deretter spillet</p>
+    <p>Hvor mange sirkler klarer du å fjerne?</p>
+    <div id="farge">
+        <label for="hvilkenFarge">Velg en farge!:</label>
+        <input type="color" id="hvilkenFarge" value="#ff0000">
+    </div>
+    <p id="pScore">Antall trykket: 0</p>
+    <p id="timer">Tid: 25 sekunder</p>
+    <button id="start-btn">Start spillet</button>
+    <audio id="klikk" src="Blipp.wav"></audio>
+
+    <script>
+
+        var ny = true;
+        var hvilkenFarge = document.getElementById("hvilkenFarge");
+
+        var fjern = function (evt) {
+            evt.stopPropagation();
+            if (!ny) {
+                var minAim = evt.target.animate([{ transform: "scale(1)" }, { transform: "scale(2)" }], 50)
+                minAim.onfinish = function () {
+                     // Endre score
+                     score++;
+                    document.getElementById("pScore").innerHTML = "Score: " + score;
+                    document.body.removeChild(evt.target);
+                }
+            }
+            ny = false;
+        }
+
+        var klikk = document.getElementById("klikk");
+        document.addEventListener("click", function () {
+            // Spill av lyden
+            klikk.play();
+        });
+
+        window.onclick = function (evt) {
+            var mittElement = document.createElement("div");
+            mittElement.style.top = evt.clientY - 25 + "px";
+            mittElement.style.left = evt.clientX - 25 + "px";
+            mittElement.style.backgroundColor = hvilkenFarge.value;
+            mittElement.onclick = fjern;
+            document.body.appendChild(mittElement);
+        }
+
+        hvilkenFarge.onclick = function (evt) {
+            evt.stopPropagation();
+        }
+
+        // Lager spill variablene
+        var score = 0;
+        var timeLeft = 25;
+        var timerId;
+        var ny = true;
+        var clickSound = document.getElementById("klikk");
+
+       
+                   
+                
+            
+            ny = false;
+        
+
+        // Spill av lyd
+        document.addEventListener("click", function () {
+            clickSound.play();
+        });
+
+
+        // Start spillet
+        function startGame(evt) {
+            
+            // Spill variablene
+            evt.stopPropagation();
+
+            score = 0;
+            timeLeft = 25;
+            ny = true;
+            document.getElementById("pScore").innerHTML = "Score: " + score;
+            document.getElementById("timer").innerHTML = "Tid: " + timeLeft;
+            
+            // Start tiden
+            timerId = setInterval(function () {
+                timeLeft--;
+                document.getElementById("timer").innerHTML = "Tid: " + timeLeft;
+                if (timeLeft == 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        // Avslutt spillet
+        function endGame() {
+            clearInterval(timerId);
+            document.body.innerHTML = "<h1>Tiden er ute!</h1><p>Din total score er: " + score + "</p>";
+        }
+
+        // Start spillet når start knappen blir trykket på 
+        document.getElementById("start-btn").onclick = startGame;
+    </script>
+
+</body>
+
+</html>
