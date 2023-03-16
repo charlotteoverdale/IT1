@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: grey;
+            background-color: bisque;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 50px;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input,
+        select {
+            margin-bottom: 10px;
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #kort {
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-right: 100px;
+        }
+
+        #kort img {
+            max-width: 100%;
+            max-height: 100%;
+
+        }
+
+        #background {
+            width: 100px;
+            height: 40px;
+        }
+
+        #forerKort {
+            text-decoration: solid;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="kort"></div> <!-- En div-container som vil inneholde det genererte kortet -->
+    <form>
+        <label for="navn">Navn:</label>
+        <input type="text" id="navn" required />
+
+        <label for="gender">Kjønn:</label>
+        <select id="gender">
+            <option value="mann">Mann</option>
+            <option value="dame">Kvinne</option>
+            <option value="annet">Annet</option>
+        </select>
+
+        <label for="tittel">Stilling:</label>
+        <input type="text" id="tittel" required />
+
+        <label for="telefon">Telefonnummer:</label>
+        <input type="telefon" id="telefon" pattern="[0-9]{8}" required placeholder="8 siffer" />
+
+        <label>
+            <input type="checkbox" id="forerKort" />
+            Har førerkort
+        </label>
+
+        <label for="background">Bakgrunnsfarge:</label>
+        <input type="color" id="background" value="#fff" />
+
+        <label for="frame">Ramme:</label>
+        <label><input type="radio" name="frame" value="none" checked> Ingen</label>
+        <label><input type="radio" name="frame" value="solid"> Solid</label>
+        <label><input type="radio" name="frame" value="dashed"> Stiplet</label>
+        <label><input type="radio" name="frame" value="dotted"> Prikker</label>
+
+        <label for="bursdag">Fødselsdag:</label>
+        <input type="date" id="bursdag" required />
+
+    
+
+        <label for="picture">Bilde:</label>
+        <input type="file" id="picture" accept="image/*" />
+
+
+        <button type="submit">Lag kort</button> <!-- En knapp for å generere kortet -->
+    </form>
+
+
+
+    <script>
+ // Når brukeren skirver inn verdiene i boksene, henter de informasjonen fra html koden
+        const form = document.querySelector("form"); // Henter form-elementet fra HTML-koden
+        const kort = document.querySelector("#kort");// Henter div-elementet fra HTML-koden
+
+        form.addEventListener("submit", function (event) { // Lytter på når skjemaet sendes inn
+            event.preventDefault(); // Hindrer at skjemaet sender inn data til serveren
+
+             // Henter verdiene fra html
+            const navn = document.querySelector("#navn").value;
+            const gender = document.querySelector("#gender").value;
+            const tittel = document.querySelector("#tittel").value;
+            const telefon = document.querySelector("#telefon").value;
+            const forerKort = document.querySelector("#forerKort").checked;
+            const background = document.querySelector("#background").value;
+            const frame = document.querySelector('input[name="frame"]:checked').value;
+            const bursdag = document.querySelector("#bursdag").value;
+            const picture = document.querySelector("#picture").files[0];
+            
+            const reader = new FileReader(); // Oppretter en FileReader-objekt for å lese bildefilen
+
+
+            reader.addEventListener("load", function () { // Når filen er lastet inn
+                const image = new Image(); // Oppretter et Image-objekt
+                image.src = reader.result;
+
+                image.addEventListener("load", function () {
+                    const canvas = document.createElement("canvas");
+                    const context = canvas.getContext("2d");
+
+                    canvas.width = 600;
+                    canvas.height = 400;
+
+                    context.fillStyle = background;
+                    context.fillRect(0, 0, canvas.width, canvas.height);
+
+                    context.fillStyle = "#000";
+                    context.font = "bold 30px Times";
+                    context.fillText(navn, 10, 30);
+
+                    context.fillStyle = "#000";
+                    context.font = "bold 14px Arial";
+                    context.fillText(tittel, 10, 60);
+
+                    context.fillStyle = "#000";
+                    context.font = "18px Arial";
+                    context.fillText("Telefonnummer:", 10, 100);
+                    context.fillText(telefon, 10, 120);
+
+                    
+
+                    if (forerKort) {
+                        context.fillStyle = "#000";
+                        context.font = "18px Arial";
+                        context.fillText("Har førerkort", 10, 140);
+                    }
+
+                    if (bursdag) {
+                        context.fillStyle = "#000";
+                        context.font = "18px Arial";
+                        context.fillText("Fødselsdag:", 10, 160);
+                        context.fillText(bursdag, 10, 180);
+                    }
+//Her bestemmes hvordan bildet vil utforme seg på kortet
+                    context.drawImage(image, 320, 115, 150, 210);
+//Her blir det bestemmet hvilken av kantene du har valgt.
+                    if (frame === "solid") {
+                        context.strokeStyle = "#000";
+                        context.strokeRect(0, 0, canvas.width, canvas.height);
+                    } else if (frame === "dashed") {
+                        context.setLineDash([5]);
+                        context.strokeStyle = "#000";
+                        context.strokeRect(0, 0, canvas.width, canvas.height);
+                    } else if (frame === "dotted") {
+                        context.setLineDash([1, 3]);
+                        context.strokeStyle = "#000";
+                        context.strokeRect(0, 0, canvas.width, canvas.height);
+                    }
+
+                    kort.innerHTML = "";
+                    kort.appendChild(canvas);
+                });
+            });
+
+            reader.readAsDataURL(picture);
+        });
+    </script>
+</body>
+
+</html>
