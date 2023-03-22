@@ -8,7 +8,6 @@
     <title>Document</title>
 
     <style>
-        
         body {
             font-family: 'Times New Roman', Times, serif;
             display: flex;
@@ -18,6 +17,7 @@
             margin: 0;
             color: grey;
             background-color: bisque;
+            font-size: 12px;
         }
 
         form {
@@ -27,16 +27,18 @@
             margin-right: 50px;
         }
 
-        label {
-            margin-bottom: 10px;
+
+        h3 {
+            margin-bottom: 5px;
+
         }
 
         input,
         select {
-            margin-bottom: 10px;
-            width: 200px;
-            padding: 10px;
-            font-size: 16px;
+            margin-bottom: 5px;
+            width: 150px;
+            padding: 5px;
+            font-size: 14px;
         }
 
         #kort {
@@ -68,70 +70,96 @@
 
 <body>
     <div id="kort"></div> <!-- En div-container som vil inneholde det genererte kortet -->
-    <form>
-        <label for="navn">Navn:</label>
-        <input type="text" id="navn" required />
+    <form id="form">
 
-        <label for="gender">Kjønn:</label>
-        <select id="gender">
-            <option value="mann">Mann</option>
-            <option value="dame">Kvinne</option>
-            <option value="annet">Annet</option>
-        </select>
+        <div>
+            <h3>Navn</h3>
+            <input type="text" id="navnInput" required>
+        </div>
 
-        <label for="tittel">Stilling:</label>
-        <input type="text" id="tittel" required />
 
-        <label for="telefon">Telefonnummer:</label>
-        <input type="telefon" id="telefon" pattern="[0-9]{8}" required placeholder="8 siffer" />
+        <div>
+            <h3>Kjønn:</h3>
+            <select id="kjonnInput">
+                <option value="mann">Mann</option>
+                <option value="dame">Kvinne</option>
+                <option value="annet">Annet</option>
+            </select>
+        </div>
 
-        <label>
-            <input type="checkbox" id="forerKort" />
+
+        <div>
+            <h3> Stilling:</h3>
+            <input type="text" id="stillingInput" required />
+        </div>
+
+        <div>
+            <h3>
+                Telefonnummer:
+            </h3>
+            <input type="telefon" id="telefonInput" pattern="[0-9]{8}" required placeholder="8 siffer" />
+        </div>
+
+        <div>
+            <input type="checkbox" id="forerKortInput" />
             Har førerkort
-        </label>
+        </div>
 
-        <label for="background">Bakgrunnsfarge:</label>
-        <input type="color" id="background" value="#fff" />
+        <div>
+            <h3>Bakgrunnsfarge:</h3>
+            <input type="color" id="backgroundInput" value="#fff" />
+        </div>
 
-        <label for="frame">Ramme:</label>
-        <label><input type="radio" name="frame" value="none" checked> Ingen</label>
-        <label><input type="radio" name="frame" value="solid"> Solid</label>
-        <label><input type="radio" name="frame" value="dashed"> Stiplet</label>
-        <label><input type="radio" name="frame" value="dotted"> Prikker</label>
+        <div>
+            <h3>Ramme:</h3>
+            <input type="radio" name="Ramme" value="none" checked> Ingen
+            <br>
+            <input type="radio" name="Ramme" id="solid"> Solid
+            <br>
+            <input type="radio" name="Ramme" id="dotted"> Prikket
+            <br>
+            <input type="radio" name="Ramme" id="double"> Dobbel
+        </div>
 
-        <label for="bursdag">Fødselsdag:</label>
-        <input type="date" id="bursdag" required />
+        <div>
+            <h3>Fødselsdag:</h3>
+            <input type="date" id="bursdagInput" required />
+        </div>
 
-    
-
-        <label for="picture">Bilde:</label>
-        <input type="file" id="picture" accept="image/*" />
-
+        <div>
+            <h3>Fortell litt om deg selv:</h3>
+            <input type="text" id="degInput">
+        </div>
+        <div>
+            <h3>Bilde:</h3>
+            <input type="file" id="imgInput" accept="image/*" />
+        </div>
 
         <button type="submit">Lag kort</button> <!-- En knapp for å generere kortet -->
     </form>
 
 
-
     <script>
- // Når brukeren skirver inn verdiene i boksene, henter de informasjonen fra html koden
-        const form = document.querySelector("form"); // Henter form-elementet fra HTML-koden
+        // Når brukeren skirver inn verdiene i boksene, henter de informasjonen fra html koden
+        const form = document.querySelector("#form"); // Henter nav-elementet fra HTML-koden
         const kort = document.querySelector("#kort");// Henter div-elementet fra HTML-koden
 
         form.addEventListener("submit", function (event) { // Lytter på når skjemaet sendes inn
             event.preventDefault(); // Hindrer at skjemaet sender inn data til serveren
 
-             // Henter verdiene fra html
-            const navn = document.querySelector("#navn").value;
-            const gender = document.querySelector("#gender").value;
-            const tittel = document.querySelector("#tittel").value;
-            const telefon = document.querySelector("#telefon").value;
-            const forerKort = document.querySelector("#forerKort").checked;
-            const background = document.querySelector("#background").value;
-            const frame = document.querySelector('input[name="frame"]:checked').value;
-            const bursdag = document.querySelector("#bursdag").value;
-            const picture = document.querySelector("#picture").files[0];
+            // Henter verdiene fra html
+            var navn = document.getElementById("navnInput").value;
+            var kjonn = document.getElementById("kjonnInput").value;
+            var stilling = document.getElementById("stillingInput").value;
+            var telefon = document.getElementById("telefonInput").value;
+            var forerKort = document.getElementById("forerKortInput").checked;
+            var background = document.getElementById("backgroundInput").value;
+            const frame = document.querySelector('input[name="Ramme"]:checked').value;
+            var deg= document.getElementById("degInput").value;
+            var bursdag = document.getElementById("bursdagInput").value;
+            var picture = document.getElementById("imgInput").files[0];
             
+
             const reader = new FileReader(); // Oppretter en FileReader-objekt for å lese bildefilen
 
 
@@ -155,14 +183,16 @@
 
                     context.fillStyle = "#000";
                     context.font = "bold 14px Arial";
-                    context.fillText(tittel, 10, 60);
+                    context.fillText(stilling, 10, 60);
 
                     context.fillStyle = "#000";
                     context.font = "18px Arial";
                     context.fillText("Telefonnummer:", 10, 100);
                     context.fillText(telefon, 10, 120);
 
-                    
+                    context.fillStyle = "#000";
+                    context.font = "bold 14px Times";
+                    context.fillText(deg, 10, 160);
 
                     if (forerKort) {
                         context.fillStyle = "#000";
@@ -173,12 +203,12 @@
                     if (bursdag) {
                         context.fillStyle = "#000";
                         context.font = "18px Arial";
-                        context.fillText("Fødselsdag:", 10, 160);
-                        context.fillText(bursdag, 10, 180);
+                        context.fillText("Fødselsdag:", 10, 210);
+                        context.fillText(bursdag, 10, 230);
                     }
-//Her bestemmes hvordan bildet vil utforme seg på kortet
+                    //Her bestemmes hvordan bildet vil utforme seg på kortet
                     context.drawImage(image, 320, 115, 150, 210);
-//Her blir det bestemmet hvilken av kantene du har valgt.
+                    //Her blir det bestemmet hvilken av kantene du har valgt.
                     if (frame === "solid") {
                         context.strokeStyle = "#000";
                         context.strokeRect(0, 0, canvas.width, canvas.height);
