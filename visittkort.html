@@ -112,13 +112,13 @@
 
         <div>
             <h3>Ramme:</h3>
-            <input type="radio" name="Ramme" value="none" checked> Ingen
+            <input type="radio" name="frame" value="none" checked> Ingen
             <br>
-            <input type="radio" name="Ramme" id="solid"> Solid
+            <input type="radio" name="frame" id="solid" value="solid"> Solid
             <br>
-            <input type="radio" name="Ramme" id="dotted"> Prikket
+            <input type="radio" name="frame" id="dashed" value="dashed"> Stiplet
             <br>
-            <input type="radio" name="Ramme" id="double"> Dobbel
+            <input type="radio" name="frame" id="dotted" value="dotted"> Prikket
         </div>
 
         <div>
@@ -154,11 +154,11 @@
             var telefon = document.getElementById("telefonInput").value;
             var forerKort = document.getElementById("forerKortInput").checked;
             var background = document.getElementById("backgroundInput").value;
-            const frame = document.querySelector('input[name="Ramme"]:checked').value;
-            var deg= document.getElementById("degInput").value;
+            var frame2 = document.querySelector('input[name="frame"]:checked').value;
+            var deg = document.getElementById("degInput").value;
             var bursdag = document.getElementById("bursdagInput").value;
             var picture = document.getElementById("imgInput").files[0];
-            
+
 
             const reader = new FileReader(); // Oppretter en FileReader-objekt for å lese bildefilen
 
@@ -208,19 +208,22 @@
                     }
                     //Her bestemmes hvordan bildet vil utforme seg på kortet
                     context.drawImage(image, 320, 115, 150, 210);
+
                     //Her blir det bestemmet hvilken av kantene du har valgt.
-                    if (frame === "solid") {
+
+                    if (frame2 === "solid") {
                         context.strokeStyle = "#000";
                         context.strokeRect(0, 0, canvas.width, canvas.height);
-                    } else if (frame === "dashed") {
+                    } else if (frame2 === "dashed") {
                         context.setLineDash([5]);
                         context.strokeStyle = "#000";
                         context.strokeRect(0, 0, canvas.width, canvas.height);
-                    } else if (frame === "dotted") {
+                    } else if (frame2 === "dotted") {
                         context.setLineDash([1, 3]);
                         context.strokeStyle = "#000";
                         context.strokeRect(0, 0, canvas.width, canvas.height);
                     }
+
 
                     kort.innerHTML = "";
                     kort.appendChild(canvas);
