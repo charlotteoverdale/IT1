@@ -72,6 +72,8 @@
     <div id="kort"></div> <!-- En div-container som vil inneholde det genererte kortet -->
     <form id="form">
 
+
+        <!--Her kommer alle feltene du skal fylle inn for å generere kortet-->
         <div>
             <h3>Navn</h3>
             <input type="text" id="navnInput" required>
@@ -86,7 +88,6 @@
                 <option value="annet">Annet</option>
             </select>
         </div>
-
 
         <div>
             <h3> Stilling:</h3>
@@ -177,6 +178,7 @@
                     context.fillStyle = background;
                     context.fillRect(0, 0, canvas.width, canvas.height);
 
+// Fyller inn kortet med nulike verdier, du har skrevet inn
                     context.fillStyle = "#000";
                     context.font = "bold 30px Times";
                     context.fillText(navn, 10, 30);
