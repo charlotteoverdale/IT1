@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jason kort generator</title>
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: grey;
+            background-color: bisque;
+            font-size: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 50px;
+        }
+
+
+        h3 {
+            margin-bottom: 5px;
+
+        }
+
+        input,
+        select {
+            margin-bottom: 5px;
+            width: 150px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        #kort {
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-right: 100px;
+        }
+
+        #kort img {
+            max-width: 100%;
+            max-height: 100%;
+
+        }
+
+        #background {
+            width: 100px;
+            height: 40px;
+        }
+
+        #forerKort {
+            text-decoration: solid;
+
+        }
+    </style>
+
+</head>
+
+    <body>
+        <div id="kort"></div> <!-- Et tomt div-element med ID 'kort' hvor det genererte kortet vil bli plassert -->
+        <form id="form"> <!-- En form med ID 'form' som skal inneholde de ulike input-feltene -->
+    
+            <div>
+                <h3>Antall ASCII - koder du vil forskyve teksten med</h3>
+                <input type="text" id="jason" placeholder="Skriv inn et tall"> <!-- Et inputfelt for å angi antall ASCII-koder å forskyve teksten med -->
+            </div>
+    
+            <div>
+                <h3>Navn</h3>
+                <input type="text" id="navnInput" required> <!-- Et inputfelt som er obligatorisk, for å angi navn -->
+            </div>
+    
+            <div>
+                <h3>Kjønn:</h3>
+                <select id="kjonnInput"> <!-- En rullegardinliste for å velge kjønn -->
+                    <option value="Mann">Mann</option>
+                    <option value="Kvinne">Kvinne</option>
+                    <option value="Annet">Annet</option>
+                </select>
+            </div>
+    
+            <div>
+                <h3> Stilling:</h3>
+                <input type="text" id="stillingInput" required /> <!-- Et obligatorisk inputfelt for å angi stillingen -->
+            </div>
+    
+            <div>
+                <h3>
+                    Telefonnummer:
+                </h3>
+                <input type="telefon" id="telefonInput" pattern="[0-9]{8}" required placeholder="8 siffer" /> <!-- Et obligatorisk inputfelt for å angi telefonnummer (dette må være 8 siffer) -->
+            </div>
+    
+            <div>
+                <input type="checkbox" id="forerKortInput" /> <!-- En sjekkboks for om brukeren har førerkort eller ikke -->
+                Har førerkort
+            </div>
+    
+            <div>
+                <h3>Bakgrunnsfarge:</h3>
+                <input type="color" id="backgroundInput" value="#fff" /> <!-- En fargevelger for å velge bakgrunnsfarge på kortet -->
+            </div>
+    
+            <div>
+                <h3>Ramme:</h3>
+                <input type="radio" name="frame" value="none" checked> Ingen <!-- En knapp for å velge ingen ramme (dette er den som er standard valgt) -->
+                <br>
+                <input type="radio" name="frame" id="solid" value="solid"> Solid <!-- En radioknapp for å velge solid ramme -->
+                <br>
+                <input type="radio" name="frame" id="dashed" value="dashed"> Stiplet <!-- En radioknapp for å velge stiplet ramme -->
+                <br>
+                <input type="radio" name="frame" id="dotted" value="dotted"> Prikket <!-- En radioknapp for å velge prikket ramme -->
+            </div>
+    
+            <div>
+                <h3>Fødselsdag:</h3>
+                <input type="date" id="bursdagInput" required /> <!-- Et obligatorisk datofelt for å angi fødselsdato -->
+            </div>
+    
+            <div>
+                <h3>Fortell litt om deg selv:</h3>
+                <input type="text" id="degInput"> <!-- Et tekstfelt for å skrive litt om seg selv -->
+            </div>
+            <div>
+                <h3>Bilde:</h3>
+                <input type="file" id="imgInput" accept="image/*" /> <!-- En filopplastingsknapp for å velge et bilde (det er kun bildefiler tillatt) -->
+            </div>
+    
+            <button type="submit">Lag kort</button> <!-- En knapp for å sende inn skjemaet og generere kortet -->
+        </form>
+    
+        <script>
+            // Når brukeren skriver inn verdiene i boksene, henter de informasjonen fra HTML-koden
+            const form = document.querySelector("#form");
+            const kort = document.querySelector("#kort");
+
+    // her er koden for hvordan teksten skal bli kryptert
+            function shiftText(text, shift) {
+                var result = "";
+                for (var i = 0; i < text.length; i++) {
+                    var code = text.charCodeAt(i);
+                    if (code >= 65 && code <= 90) {
+                        code = (code - 65 + shift) % 26 + 65;
+                    } else if (code >= 97 && code <= 122) {
+                        code = (code - 97 + shift) % 26 + 97;
+                    }
+                    result += String.fromCharCode(code);
+                }
+                return result;
+            }
+    // her blir inputene som skal bli kryptert valgt, det er da stilling, navn, og om deg som blir kryptert
+            function encryptText(elementId, shift) {
+                var element = document.getElementById(elementId);
+                var text = element.value;
+                var result = shiftText(text, shift);
+                element.value = result;
+            }
+    
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                var shift = parseInt(document.getElementById("jason").value);
+    
+                encryptText("navnInput", shift);
+                encryptText("stillingInput", shift);
+                encryptText("degInput", shift);
+                
+    // Her definerer jeg funksjonene
+                var navn = document.getElementById("navnInput").value; // Henter verdien fra elementet med id "navnInput" og lagrer den i variabelen "navn"
+                var kjonn = document.getElementById("kjonnInput").value; // Henter verdien fra elementet med id "kjonnInput" og lagrer den i variabelen "kjonn"
+                var stilling = document.getElementById("stillingInput").value; // Henter verdien fra elementet med id "stillingInput" og lagrer den i variabelen "stilling"
+                var telefon = document.getElementById("telefonInput").value; // Henter verdien fra elementet med id "telefonInput" og lagrer den i variabelen "telefon"
+                var forerKort = document.getElementById("forerKortInput").checked; // Henter tilstanden (checked/ikke checked) fra elementet med id "forerKortInput" og lagrer den i variabelen "forerKort"
+                var background = document.getElementById("backgroundInput").value; // Henter verdien fra elementet med id "backgroundInput" og lagrer den i variabelen "background"
+                var frame2 = document.querySelector('input[name="frame"]:checked').value; // Henter verdien fra det valgte alternativet (input) med navnet "frame" og lagrer den i variabelen "frame2"
+                var deg = document.getElementById("degInput").value; //Verdien fra et HTML-element med id-en "degInput" blir hentet og lagret i variabelen deg.
+                var bursdag = document.getElementById("bursdagInput").value;//Her blir verdien fra et HTML-element med id-en "bursdagInput" hentet og lagret i variabelen bursdag.
+                var picture = document.getElementById("imgInput").files[0]; //Denne kodelinjen henter den første filen som er valgt i en filopplastingsfelt med id-en "imgInput" og lagrer den i variabelen picture
+    
+                const reader = new FileReader(); // Oppretter en FileReader for å lese filinnholdet
+
+                reader.addEventListener("load", function () { // Legger til en denne for når filen er lastet inn i FileReader
+                    const image = new Image(); // Oppretter et bildeobjekt
+                    image.src = reader.result; // Setter filinnholdet som kilde til bildet
+    
+                    image.addEventListener("load", function () {
+                        const canvas = document.createElement("canvas");
+                        const context = canvas.getContext("2d");
+    
+                        canvas.width = 600; //Setter bredden på kortet til 600
+                        canvas.height = 400; // Setter høyden på kortet til 400
+    
+                        context.fillStyle = background;
+                        context.fillRect(0, 0, canvas.width, canvas.height);
+    
+// Setter inn forskjellige stiler og posisjoner til de ulike input-ene
+
+                        // Tegner navn på posisjon (10, 30)
+                        context.fillStyle = "#000"; // Setter fyllfargen til svart
+                        context.font = "bold 30px Times";
+                        context.fillText(navn, 10, 30);
+    
+                        // Tegner stilling på posisjon (10, 70)
+                        context.fillStyle = "#000";
+                        context.font = "bold 14px Arial";
+                        context.fillText(stilling, 10, 70);
+
+                        // Setter telefonnummer input på posisjon (10, 120)
+                        context.fillStyle = "#000";
+                        context.font = "18px Arial";
+                        context.fillText("Telefonnummer:", 10, 100); // Setter "Telefonnummer:" på posisjon (10, 100)
+                        context.fillText(telefon, 10, 120);
+
+                        // Setter "deg" på posisjon (10, 160)
+                        context.fillStyle = "#000";
+                        context.font = "bold 14px Times";
+                        context.fillText(deg, 10, 160);
+
+                        //Setter kjønn på posisjon (10, 50)
+                        context.fillStyle ="#000";
+                        context.font ="16px Times";
+                        context.fillText(kjonn,10,50)
+    
+                        if (forerKort) {
+                            context.fillStyle = "#000";
+                            context.font = "18px Arial";
+                            context.fillText("Har førerkort", 10, 140); // Setter teksten "Har førerkort" på posisjon (10, 140) hvis 'forerKort' er sann
+                        }
+    
+                        if (bursdag) {
+                            context.fillStyle = "#000";
+                            context.font = "18px Arial";
+                            context.fillText("Fødselsdag:", 10, 210); // Setter teksten "Fødselsdag:" på posisjon (10, 210) hvis 'bursdag' er satt
+                            context.fillText(bursdag, 10, 230); // Setter datoen på posisjon (10, 230)
+                        }
+    
+                        context.drawImage(image, 320, 115, 150, 210); // Setter inn bildet på angitt posisjon og størrelse (320, 115, 150, 210)
+    
+                        if (frame2 === "solid") {
+                            context.strokeStyle = "#000";
+                            context.strokeRect(0, 0, canvas.width, canvas.height); // Tegner en solid ramme rundt hele kortet
+                        } else if (frame2 === "dashed") {
+                            context.setLineDash([5]);
+                            context.strokeStyle = "#000";
+                            context.strokeRect(0, 0, canvas.width, canvas.height); // Tegner en prikket ramme rundt hele kortet
+                        } else if (frame2 === "dotted") {
+                            context.setLineDash([1, 3]);
+                            context.strokeStyle = "#000";
+                            context.strokeRect(0, 0, canvas.width, canvas.height); // Tegner en stiplet ramme rundt hele kortet
+                        }
+    
+                        kort.innerHTML = "";
+                        kort.appendChild(canvas);
+                    });
+                });
+    
+                reader.readAsDataURL(picture);
+            });
+    </script>
+    
+</body>
+
+</html>

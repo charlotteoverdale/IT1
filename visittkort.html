@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vissitkort</title>
 
     <style>
         body {
@@ -72,7 +72,6 @@
     <div id="kort"></div> <!-- En div-container som vil inneholde det genererte kortet -->
     <form id="form">
 
-
         <!--Her kommer alle feltene du skal fylle inn for å generere kortet-->
         <div>
             <h3>Navn</h3>
@@ -83,9 +82,9 @@
         <div>
             <h3>Kjønn:</h3>
             <select id="kjonnInput">
-                <option value="mann">Mann</option>
-                <option value="dame">Kvinne</option>
-                <option value="annet">Annet</option>
+                <option value="Mann">Mann</option>
+                <option value="Kvinne">Kvinne</option>
+                <option value="Annet">Annet</option>
             </select>
         </div>
 
@@ -178,14 +177,18 @@
                     context.fillStyle = background;
                     context.fillRect(0, 0, canvas.width, canvas.height);
 
-// Fyller inn kortet med nulike verdier, du har skrevet inn
+// Fyller inn kortet med ulike verdier, du har skrevet inn
                     context.fillStyle = "#000";
                     context.font = "bold 30px Times";
                     context.fillText(navn, 10, 30);
 
                     context.fillStyle = "#000";
-                    context.font = "bold 14px Arial";
-                    context.fillText(stilling, 10, 60);
+                    context.font = "15px Times";
+                    context.fillText(kjonn, 10, 50);
+
+                    context.fillStyle = "#000";
+                    context.font = " 16px Arial";
+                    context.fillText(stilling, 10, 70);
 
                     context.fillStyle = "#000";
                     context.font = "18px Arial";
@@ -234,6 +237,8 @@
 
             reader.readAsDataURL(picture);
         });
+        
+      
     </script>
 </body>
 
