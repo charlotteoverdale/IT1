@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kryptering</title>
+  <style>
+    button:hover {
+      color: blanchedalmond;
+      transform: rotate(180deg);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      border: 2px solid #ccc;
+      padding: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: lightblue;
+      transform: rotate(180deg);
+    }
+
+    #output {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Kryptering av tekst</h1>
+  <!-- Lager to inputfelt, for hva du vil kyptere, og hvor mange ganger du ønsker å forskyve teksten -->
+  <input type="text" id="input-text" placeholder="Skriv inn teksten du vil kryptere"><br>
+  <input type="text" id="input-shift" placeholder="Skriv inn antall ASCII-koder du vil forskyve teksten med"><br>
+  <button onclick="encryptText()">Krypter</button>
+  <p id="output"></p>
+
+  <script>
+
+
+    // Funksjon for å forskyve teksten med angitt antall ASCII-koder
+    function shiftText(text, shift) {
+      var result = "";
+      for (var i = 0; i < text.length; i++) {
+        var code = text.charCodeAt(i);
+        if (code >= 65 && code <= 90) {
+          code = (code - 65 + shift) % 26 + 65; // Forflytter store bokstaver (A-Z)
+        } else if (code >= 97 && code <= 122) {
+          code = (code - 97 + shift) % 26 + 97; // Forflytter små bokstaver (a-z)
+        }
+        result += String.fromCharCode(code);
+      }
+      return result;
+    }
+
+    // Funksjon for å kryptere teksten basert på brukerens input
+    function encryptText() {
+      var text = document.getElementById("input-text").value; // Henter teksten fra input-feltet
+      var shift = parseInt(document.getElementById("input-shift").value);  // Henter forskyvningsverdien fra input-feltet
+      var result = shiftText(text, shift); // Kaller funksjonen for å kryptere teksten
+      document.getElementById("output").innerHTML = "Den krypterte teksten er: " + result; // Oppdaterer teksten i output-paragraphen med det krypterte resultatet
+    }
+  </script>
+
+
+</body>
+
+</html>
