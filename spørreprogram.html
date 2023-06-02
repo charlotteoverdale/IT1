@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <audio id="lydRiktigSvar" src="C:/Users/helgeul/OneDrive%20-%20Viken%20fylkeskommune/Arkiv/IT2/2020-21/JS/Applaus1.mp3"></audio>
+    <h1 id="sporsmaal">Her er spørsmålet</h1>
+    <input id="inpSvar" type="text">
+    <input id="inpNyttSpmSvar" type="text" hidden="true">
+    <button id="btnAdmin">Bli admin</button>
+    <h5 id="alternativ1">Alt1</h5>
+    <h5 id="alternativ2">Alt2</h5>
+    <h5 id="alternativ3">Alt3</h5>
+
+    <button id="btnOK">Klikk når du er klar</button>
+    <button id="btnForrige">Forrige</button>
+    <button id="btnNeste">Neste</button>
+    <br><br>
+    <img id="imgBilde" src="" width=200px alt="Fant ikke bildet">
+    <script>
+        var sporsmaal = document.getElementById("sporsmaal");
+        var alternativ1 = document.getElementById("alternativ1");
+        var alternativ2 = document.getElementById("alternativ2");
+        var alternativ3 = document.getElementById("alternativ3");
+        var lydRiktigSvar = document.getElementById("lydRiktigSvar");
+
+        var inpSvar = document.getElementById("inpSvar");
+        var inpNyttSpmSvar = document.getElementById("inpNyttSpmSvar");
+        var btnOK = document.getElementById("btnOK");
+        var btnNeste = document.getElementById("btnNeste");
+        var btnForrige = document.getElementById("btnForrige");
+        var imgBilde = document.getElementById("imgBilde");
+        var btnAdmin = document.getElementById("btnAdmin");
+        var spmNr = 0;
+        btnForrige.disabled = true;
+
+        var spmOgSvar = [
+            { q: "Hvem vant f1 i 2021?", a1: "1: Max Verstappen", a2: "2: Lewis Hamilton", a3: "3: Sebastian Vettle", riktig: "1", bilde: "formel1.jpg" },
+            { q: "Hvor mange verdensmesterskap har Lewis Hamilton vunnet?", a1: "5", a2: "8", a3: "7", riktig: "3", bilde: "lewis.jpg" },
+            { q: "Hvilket land i verden drikker mest pepsi max?", a1: "1: Usa", a2: "2: Norge", a3: "3: Kina", riktig: "2", bilde: "norge.jpg" },
+        ]
+
+        function settOppSkjermbilde() {
+            sporsmaal.innerHTML = spmOgSvar[spmNr].q;
+            imgBilde.src = spmOgSvar[spmNr].bilde;
+            if(spmOgSvar[spmNr].bilde == "") {
+                imgBilde.alt = "";
+            }
+            alternativ1.innerHTML = spmOgSvar[spmNr].a1;
+            alternativ2.innerHTML = spmOgSvar[spmNr].a2;
+            alternativ3.innerHTML = spmOgSvar[spmNr].a3;
+        }
+
+        //initiering av det første spørsmål:
+        settOppSkjermbilde();
+
+        function sjekkSvar() {
+            if (inpSvar.value.toLowerCase() == spmOgSvar[spmNr].riktig.toLowerCase()) {
+                alert("Det var RIKTIG!")
+                lydRiktigSvar.play();
+            }
+            else {
+                alert("Det var feil..:(")
+            }
+        }
+        btnOK.addEventListener("click", sjekkSvar);
+
+        function nesteSpm() {
+            btnForrige.disabled = false;
+            if (spmNr < spmOgSvar.length - 1) {
+                spmNr = spmNr + 1  // spmNr++;
+                settOppSkjermbilde();
+            }
+            if (spmNr == spmOgSvar.length - 1) {
+                btnNeste.disabled = true;
+            }
+        }
+        btnNeste.addEventListener("click", nesteSpm);
+
+        function forrigeSpm() {
+            btnNeste.disabled = false;
+            if (spmNr > 0) {
+                spmNr = spmNr - 1  // spmNr--;
+                settOppSkjermbilde();
+            }
+            if (spmNr == 0) {
+                btnForrige.disabled = true;
+            }
+        }
+        btnForrige.addEventListener("click", forrigeSpm);
+
+        function adminFunksjoner() {
+            btnAdmin.innerHTML = "Tilbake til vanlig svarmodus";
+            btnAdmin.removeEventListener("click", adminFunksjoner);
+            btnAdmin.addEventListener("click", normalFunksjoner);
+            inpNyttSpmSvar.hidden=false;
+            sporsmaal.innerHTML = "Skriv nytt spørsmål i første inputfelt, riktig svar i andre";
+            inpSvar.placeholder = "Spørsmål";
+            inpNyttSpmSvar.placeholder = "Svar";
+            alternativ1.hidden = true;
+            alternativ2.hidden = true;
+            alternativ3.hidden = true;
+            imgBilde.src="";
+            imgBilde.alt="";
+            btnForrige.hidden=true;
+            btnNeste.hidden=true;
+            btnOK.removeEventListener("click", sjekkSvar);
+            btnOK.addEventListener("click", leggInnNyttSpm);
+            btnOK.innerHTML = "Legg inn spørsmålet";
+        }
+
+        function normalFunksjoner() {
+            alert("her må jeg skrive alt som skal til for å sette tilbake til vanlig modus")
+            alert("forresten, Nå er det " + spmOgSvar.length + " spørmål i arrayen")               
+        }
+
+        function leggInnNyttSpm() {
+            //gjør alt som trengs for å legge til et nytt spm
+            var nyttSpm = {q: inpSvar.value, riktig: inpNyttSpmSvar.value, a1:"", a2:"",a3:"" ,bilde: "" };
+            spmOgSvar.push(nyttSpm);
+        }
+        btnAdmin.addEventListener("click", adminFunksjoner);
+
+        function knappeTrykk(evt){
+            var tallkode = evt.keyCode;
+            if(tallkode==66){ // du har trykket på B
+                btnAdmin.hidde=false;
+            }
+        }
+        document.addEventListener("keydown",knappeTrykk);
+    </script>
+</body>
+</html>
