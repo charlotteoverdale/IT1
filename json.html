@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: grey;
+            background-color: bisque;
+            font-size: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 50px;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            margin-bottom: 5px;
+            width: 150px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        #kort {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 600px;
+            height: 400px;
+            border: 1px solid grey;
+            padding: 10px;
+            margin-right: 100px;
+            border-width: 3px;
+        }
+
+        #kort img {
+            max-width: 200px;
+            max-height: 300px;
+            margin-right: 20px;
+        }
+
+        #kort .info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #background {
+            width: 100px;
+            height: 40px;
+        }
+
+        #forerkort {
+            text-decoration: solid;
+        }
+
+        #leggTilPersonContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <!--Her er overskrivetn og dropdown - listen som js filen vil fylle inn.-->
+        <div id="leggTilPersonContainer">
+            
+            <h2>Legg til Person</h2>
+        
+            <select id="minListe"></select>
+        </div>
+    </nav>
+
+    <!-- Her har jeg laget en DIV, denne inneholder lat som skal genereres i kortet 
+    Det er disse ID-ene vi henter i starten av script, slik at vi kan få bruk for de.-->
+    <div id="kort">
+        
+        <img src="" alt="" id="bildeImg">
+        <div class="info">
+            <h3 id="plasserNavn"></h3>
+            <div id="visittKortInnhold">
+              
+                <div id="plasserStilling"></div>
+              
+                <div id="plasserKjonn"></div>
+              
+                <div id="plassertlfNummer"></div>
+              
+                <div id="plasserValg"></div>
+               
+                <div id="plasserForerkort"></div>
+               
+                <div id="plasserfodselsdag"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Her lager vi en div for bakgrunnsfarge, som skal kunne velges av brukere. 
+        Denne vil være "gjennomsikttig" før man velger en farge, og fargen vil være innstilt på svart -->
+    <div>
+        <h3>Bakgrunnsfarge:</h3>
+        <input type="color" id="backgroundInput" value="#fff" />
+    </div>
+
+    <!--Her lager jeg en div for ramme, slik at brukerne kan velge hvilken ramme de ønsker rundt kortet.
+    Denne vil bli oppdatert med en gang man velger, og har en standarramme på "ingen"-->
+    <div>
+        <h3>Ramme:</h3>
+        <input type="radio" name="frame" value="none" checked> Ingen
+        <br>
+        <input type="radio" name="frame" id="solid" value="solid"> Solid
+        <br>
+        <input type="radio" name="frame" id="dashed" value="dashed"> Stiplet
+        <br>
+        <input type="radio" name="frame" id="dotted" value="dotted"> Prikket
+    </div>
+
+    <!-- dette er en ekstern javascript fil, og det er her informasjonen om de ulike personene ligger. 
+    Vi kan legge til så mange vi vil inni denne, og detet fører tila t nedtrekksmenyen blir lengre-->
+    <script src="kort.js"></script>
+    <script>
+
+        //her frakter jeg alle ID-ene fra html dokumentet over til script og finner variabler som vil. 
+        //refererer til de ulike HTML-elementene ved hjelp av ID-er.
+        var minListe = document.getElementById("minListe");
+        var bildeImg = document.getElementById("bildeImg");
+        var plasserNavn = document.getElementById("plasserNavn");
+        var plasserKjonn = document.getElementById("plasserKjonn");
+        var plasserStilling = document.getElementById("plasserStilling");
+        var plassertlfNummer = document.getElementById("plassertlfNummer");
+        var plasserValg = document.getElementById("plasserValg");
+        var plasserForerkort = document.getElementById("plasserForerkort");
+        var plasserfodselsdag = document.getElementById("plasserfodselsdag");
+        var backgroundInput = document.getElementById("backgroundInput");
+        var kort = document.getElementById("kort");
+
+        // Her gjør jeg slik at vi kan hente personene fra js filen og lage en dropdown meny/liste.
+        for (var i = 0; i < dataInfo.kortArray.length; i++) {
+            var option = document.createElement("option");
+            option.text = dataInfo.kortArray[i].navn;
+            option.value = i;
+            minListe.appendChild(option);
+        }
+//Her har jeg laget en funkjson som henter informajsonen fra den andre filen og fører det inn i kortet
+//Funksjonen vil da oppdatere kortet når en person er valgt og fylle inn navn, telefon osv i kortet.
+        minListe.onchange = function () {
+            var valgtIndex = minListe.value;
+            var valgtPerson = dataInfo.kortArray[valgtIndex];
+            bildeImg.src = valgtPerson.bilde;
+            plasserNavn.textContent = valgtPerson.navn;
+            plasserKjonn.textContent = "Kjønn: " + valgtPerson.kjonn;
+            plasserStilling.textContent = "Stilling: " + valgtPerson.stilling;
+            plassertlfNummer.textContent = "Telefonnummer: " + valgtPerson.telefonnummer;
+            plasserValg.textContent = "Fortell om deg selv: " + valgtPerson.valgfri;
+            plasserForerkort.textContent = "Førerkort: " + (valgtPerson.forerkort ? "Ja" : "Nei");
+            plasserfodselsdag.textContent = "Fødselsdag: " + valgtPerson.fodselsdag;
+        };
+//Denne gjør slik at bakhrunnnsfaregn på kortet kan velges, og blir oppdatert når det er valgt en farge. 
+//Dette kan man gjøre både før og etter man har valgt en perosn.
+        backgroundInput.oninput = function () {
+            kort.style.backgroundColor = backgroundInput.value;
+        };
+
+        // Denne variablen gjør slik at rammen du velger å ha på kortet kommer. 
+        //Den er stylet slik at den har en tykkelse på 3px.
+        var frameInputs = document.querySelectorAll('input[name="frame"]');
+        for (var i = 0; i < frameInputs.length; i++) {
+            frameInputs[i].addEventListener("change", function () {
+                //Det er denne variablen som henter rammen du har valgt.
+                var selectedFrame = this.value;
+                kort.style.borderStyle = selectedFrame;
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
