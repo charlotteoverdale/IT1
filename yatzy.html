@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #faf8ef;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: pink;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        button {
+            background-color: lightpink;
+            border: none;
+            border-radius: 0.5em;
+            color: #2c3e50;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 0.5em 1em;
+        }
+
+        button:hover {
+            background-color: lightcoral;
+        }
+
+        ul#dice {
+            display: inline-block;
+            border: #2c3e50;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul#dice li {
+            background-color: l;
+            border: 1px solid grey;
+            border-radius: 0.5em;
+            display: inline-block;
+            font-size: 2em;
+            height: 1.5em;
+            margin: 0 0.25em;
+            text-align: center;
+            width: 1.5em;
+        }
+
+        .navn {
+            color: transparent;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid black;
+        }
+
+        tr {
+            height: 35px;
+        }
+
+        .kategori {
+            width: 200px;
+        }
+
+        .kategori1 {
+            width: 200px;
+            background-color: lightgray;
+        }
+
+        .rad18 {
+            background-color: lightgrey;
+        }
+
+        .rad7 {
+            background-color: lightgray;
+        }
+
+        .rad8 {
+            background-color: lightgrey;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        td {
+            width: 60px;
+        }
+
+        /* Ny stil med svart kant */
+        .table td {
+            border: 1px solid black;
+        }
+
+        .table th {
+            border: 1px solid black;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+
+    <h1>La oss spille Yatzy!</h1>
+    <!-- Her lager jeg fire input felt, slik at man kan fylle inn navnene på spillerne,
+    navnene vil bli lagt inn i tabellen når man trykker på lagre-->
+
+    <input type="text" style="width: 100px;" placeholder="Skriv inn spiller 1" id="input1">
+    <input type="text" style="width: 100px;" placeholder="Skriv inn spiller 2" id="input2">
+    <input type="text" style="width: 100px;" placeholder="Skriv inn spiller 3" id="input3">
+    <input type="text" style="width: 100px;" placeholder="Skriv inn spiller 4" id="input4">
+    <button id="lagreStyle" onclick="navnLagre()">Lagre</button>
+
+    <br>
+
+
+    <button id="btnCheck" onclick="kast()">Kast terningene!</button>
+    <br>
+    <br>
+    <!-- her lager jeg knappene for terningene, disse vil ikek ha en funskjon før man trykker på kast knappen,
+    de vil ikke fungere, før de er derfinert og gjort om til en funksjon i script -->
+    <button id="terningNr1"></button>
+    <button id="terningNr2"></button>
+    <button id="terningNr3"></button>
+    <button id="terningNr4"></button>
+    <button id="terningNr5"></button>
+
+
+    <br>
+    <!-- her lager jeg checkboxene under terningene, deres funskjon vil være at de holder igjen terningene 
+    om de er valg. detet gjør de ikek før de har fått denne funkjsonen i script-->
+    <input type="checkbox" id="checkBox1" onclick="byttFarge()">
+    <input type="checkbox" id="checkBox2" onclick="byttFarge()">
+    <input type="checkbox" id="checkBox3" onclick="byttFarge()">
+    <input type="checkbox" id="checkBox4" onclick="byttFarge()">
+    <input type="checkbox" id="checkBox5" onclick="byttFarge()">
+
+
+
+    <!--Her er tabellen for spillet, hvor hver "verdi" er merket med hevr sin rad. Ettersom de er innen for tr, 
+vil det føre til at de kommer på samme linje i tabellen.-->
+    <div class="table">
+        <table>
+            <thead class="">
+                <th class="deltagere">Deltagere</th>
+                <th class="deltagere"></th>
+                <th class="deltagere"> </th>
+                <th class="deltagere"> </th>
+                <th class="deltagere"> </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rad1">Enere</td>
+                    <td class="rad1" onclick="settTallEnTilSeks(1, 1)"> </td>
+                    <td class="rad1" onclick="settTallEnTilSeks(1, 2)"> </td>
+                    <td class="rad1" onclick="settTallEnTilSeks(1, 3)"> </td>
+                    <td class="rad1" onclick="settTallEnTilSeks(1, 4)"> </td>
+                </tr>
+                <tr>
+                    <td class="rad2">Toere</td>
+                    <td class="rad2" onclick="settTallEnTilSeks(2, 1)"> </td>
+                    <td class="rad2" onclick="settTallEnTilSeks(2, 2)"> </td>
+                    <td class="rad2" onclick="settTallEnTilSeks(2, 3)"> </td>
+                    <td class="rad2" onclick="settTallEnTilSeks(2, 4)"> </td>
+                </tr>
+                <tr>
+                    <td class="rad3">Treere</td>
+                    <td class="rad3" onclick="settTallEnTilSeks(3, 1)"> </td>
+                    <td class="rad3" onclick="settTallEnTilSeks(3, 2)"> </td>
+                    <td class="rad3" onclick="settTallEnTilSeks(3, 3)"> </td>
+                    <td class="rad3" onclick="settTallEnTilSeks(3, 4)"> </td>
+                </tr>
+                <tr>
+                    <td class="rad4">Firere</td>
+                    <td class="rad4" onclick="settTallEnTilSeks(4, 1)"> </td>
+                    <td class="rad4" onclick="settTallEnTilSeks(4, 2)"> </td>
+                    <td class="rad4" onclick="settTallEnTilSeks(4, 3)"> </td>
+                    <td class="rad4" onclick="settTallEnTilSeks(4, 4)"> </td>
+
+                </tr>
+                <tr>
+                    <td class="rad5">Femmere</td>
+                    <td class="rad5" onclick="settTallEnTilSeks(5, 1)"> </td>
+                    <td class="rad5" onclick="settTallEnTilSeks(5, 2)"> </td>
+                    <td class="rad5" onclick="settTallEnTilSeks(5, 3)"> </td>
+                    <td class="rad5" onclick="settTallEnTilSeks(5, 4)"> </td>
+                </tr>
+                <tr>
+                    <td class="rad6">Seksere</td>
+                    <td class="rad6" onclick="settTallEnTilSeks(6, 1)"> </td>
+                    <td class="rad6" onclick="settTallEnTilSeks(6, 2)"> </td>
+                    <td class="rad6" onclick="settTallEnTilSeks(6, 3)"> </td>
+                    <td class="rad6" onclick="settTallEnTilSeks(6, 4)"> </td>
+                </tr>
+                <tr class="">
+                    <td class="rad7">Sum</td>
+                    <td class="rad7" onclick=""> </td>
+                    <td class="rad7" onclick=""> </td>
+                    <td class="rad7" onclick=""> </td>
+                    <td class="rad7" onclick=""> </td>
+                </tr>
+                <tr class="">
+                    <td class="rad8">Bonus</td>
+                    <td class="rad8" onclick=""> </td>
+                    <td class="rad8" onclick=""> </td>
+                    <td class="rad8" onclick=""> </td>
+                    <td class="rad8" onclick=""> </td>
+                </tr>
+                <tr>
+                    <td class="rad9">Ett par</td>
+                    <td class="rad9" onclick="ettPar(1)"> </td>
+                    <td class="rad9" onclick="ettPar(2)"> </td>
+                    <td class="rad9" onclick="ettPar(3)"> </td>
+                    <td class="rad9" onclick="ettPar(4)"> </td>
+                </tr>
+                <tr>
+                    <td class="rad10">To par</td>
+                    <td class="rad10" onclick="toPar(1)"> </td>
+                    <td class="rad10" onclick="toPar(2)"> </td>
+                    <td class="rad10" onclick="toPar(3)"> </td>
+                    <td class="rad10" onclick="toPar(4)"> </td>
+                </tr>
+                <tr>
+                    <td class="rad11">Tre like</td>
+                    <td class="rad11" onclick=""> </td>
+                    <td class="rad11" onclick=""> </td>
+                    <td class="rad11" onclick=""> </td>
+                    <td class="rad11" onclick=""> </td>
+                </tr>
+                <tr>
+                    <td class="rad12">Fire like</td>
+                    <td class="rad12" onclick=""> </td>
+                    <td class="rad12" onclick=""> </td>
+                    <td class="rad12" onclick=""> </td>
+                    <td class="rad12" onclick=""> </td>
+                </tr>
+                <tr>
+                    <td class="rad13">Liten straight</td>
+                    <td class="rad13" onclick=""> </td>
+                    <td class="rad13" onclick=""> </td>
+                    <td class="rad13" onclick=""> </td>
+                    <td class="rad13" onclick=""> </td>
+                </tr>
+                <tr>
+                    <td class=" rad14">Stor straight</td>
+                    <td class="rad14" onclick=""> </td>
+                    <td class="rad14" onclick=""> </td>
+                    <td class="rad14" onclick=""> </td>
+                    <td class="rad14" onclick=""> </td>
+                </tr>
+                <tr>
+                    <td class=" rad15">Hus</td>
+                    <td class="rad15" onclick=""> </td>
+                    <td class="rad15" onclick=""> </td>
+                    <td class="rad15" onclick=""> </td>
+                    <td class="rad15" onclick=""> </td>
+                </tr>
+                <tr>
+                    <td class="rad16">Sjanse</td>
+                    <td class="rad16" onclick=""> </td>
+                    <td class="rad16" onclick=""> </td>
+                    <td class="rad16" onclick=""> </td>
+                    <td class="rad16" onclick=""> </td>
+                </tr>
+                <tr>
+                    <td class="rad17">Yatzy</td>
+                    <td class="rad17" onclick=""> </td>
+                    <td class="rad17" onclick=""> </td>
+                    <td class="rad17" onclick=""> </td>
+                    <td class="rad17" onclick=""> </td>
+                </tr>
+                <tr class="">
+                    <td class="rad18">Totalt</td>
+                    <td class="rad18" onclick=""> </td>
+                    <td class="rad18" onclick=""> </td>
+                    <td class="rad18" onclick=""> </td>
+                    <td class="rad18" onclick=""> </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <script>
+
+            //her frakter jeg alle classene fra html dokumentet over til script og finner variabler som vil. 
+            //refererer til de ulike HTML-elementene ved hjelp av classene.
+
+            var rad0 = document.getElementsByClassName("deltagere");
+            var rad1 = document.getElementsByClassName("rad1");
+            var rad2 = document.getElementsByClassName("rad2");
+            var rad3 = document.getElementsByClassName("rad3");
+            var rad4 = document.getElementsByClassName("rad4");
+            var rad5 = document.getElementsByClassName("rad5");
+            var rad6 = document.getElementsByClassName("rad6");
+            var rad7 = document.getElementsByClassName("rad7");
+            var rad8 = document.getElementsByClassName("rad8");
+            var rad9 = document.getElementsByClassName("rad9");
+            var rad10 = document.getElementsByClassName("rad10");
+            var rad11 = document.getElementsByClassName("rad11");
+            var rad12 = document.getElementsByClassName("rad12");
+            var rad13 = document.getElementsByClassName("rad13");
+            var rad14 = document.getElementsByClassName("rad14");
+            var rad15 = document.getElementsByClassName("rad15");
+            var rad16 = document.getElementsByClassName("rad16");
+            var rad17 = document.getElementsByClassName("rad17");
+            var rad18 = document.getElementsByClassName("rad18");
+
+            //Dette er en array som kalles radArray, 
+            //den har referanser til  de ulike radene i spillet
+            const radArray = [
+                rad0,
+                rad1,
+                rad2,
+                rad3,
+                rad4,
+                rad5,
+                rad6,
+                rad7,
+                rad8,
+                rad9,
+                rad10,
+                rad11,
+                rad12,
+                rad13,
+                rad14,
+                rad15,
+                rad16,
+                rad17,
+                rad18
+            ]
+
+
+
+            //Her er variablene til kast-knappen, terningene og checkboxene
+            btnCheck = document.getElementById("btnCheck");
+
+            terningNr1 = document.getElementById("terningNr1");
+            terningNr2 = document.getElementById("terningNr2");
+            terningNr3 = document.getElementById("terningNr3");
+            terningNr4 = document.getElementById("terningNr4");
+            terningNr5 = document.getElementById("terningNr5");
+
+            checkBox1 = document.getElementById("checkBox1");
+            checkBox2 = document.getElementById("checkBox2");
+            checkBox3 = document.getElementById("checkBox3");
+            checkBox4 = document.getElementById("checkBox4");
+            checkBox5 = document.getElementById("checkBox5");
+
+            //Her er en variabel som heter antallKast, denne gjør slik 
+            //at en spiller kun kan kaste tre ganger, før den må fylle ut tabellen
+            let antallKast = 3;
+
+            // Det er denne funskjonen som avgjør hvilke verdi terningen viser, den har et tilfeldig
+            //tall resultat som blir generert ved hjelp av Math.random
+            function terningResultat() {
+                return Math.floor(Math.random() * 6) + 1
+            }
+
+
+            //Når kast knappen trykkes på, kjøres denne funksjonen. Den blir kun kjørt hvis antall kast er over 0.
+            //Prøver man å kaste mer en tre ganger får man en varsling om at man iokke har flere kast
+            function kast() {
+                if (antallKast > 0) {
+                    if (checkBox1.checked == false) {
+                        document.getElementById("terningNr1").innerHTML = terningResultat();
+                        document.getElementById("terningNr1").style.backgroundColor = "";
+                    }
+                    else {
+
+                    }
+
+                    if (checkBox2.checked == false) {
+                        document.getElementById("terningNr2").innerHTML = terningResultat();
+                        document.getElementById("terningNr2").style.backgroundColor = "";
+                    }
+                    else {
+
+                    }
+
+                    if (checkBox3.checked == false) {
+                        document.getElementById("terningNr3").innerHTML = terningResultat();
+                        document.getElementById("terningNr3").style.backgroundColor = "";
+                    }
+                    else {
+
+                    }
+                    if (checkBox4.checked == false) {
+                        document.getElementById("terningNr4").innerHTML = terningResultat();
+                        document.getElementById("terningNr4").style.backgroundColor = "";
+                    }
+                    else {
+
+                    }
+                    if (checkBox5.checked == false) {
+                        document.getElementById("terningNr5").innerHTML = terningResultat();
+                        document.getElementById("terningNr5").style.backgroundColor = "";
+                    }
+                    else {
+
+                    }
+                    // funksjoen kjører denne helt til antallKast = 0
+                    antallKast = antallKast - 1;
+                }
+
+                else {
+                    alert("Du har ikke flere kast")
+                }
+            }
+
+            // Denne funksjonen restarter terningene og gjør at den nye spilleren får 3 kast
+            function restartTerningene() {
+                antallKast = 3;
+            }
+
+            //Denne funksjonen brukes til å checke av checkboxene så neste spiller slipper å gjøre det manuelt
+            //den setter derfor alle checkboxene til false
+            function checkBoxAv() {
+                document.getElementById("checkBox1").checked = false;
+                document.getElementById("checkBox2").checked = false;
+                document.getElementById("checkBox3").checked = false;
+                document.getElementById("checkBox4").checked = false;
+                document.getElementById("checkBox5").checked = false;
+
+                //Her bestemmer jeg at fargen på terningene skal være hvite, med svart tall når de bli kastet.
+                //denne vil da endre farge tilbake når checkboxene blir checket av. Slik at det er klart
+                //for neste spiller
+                document.getElementById("terningNr1").style.backgroundColor = "";
+                document.getElementById("terningNr1").style.color = "black";
+                document.getElementById("terningNr2").style.backgroundColor = "";
+                document.getElementById("terningNr2").style.color = "black";
+                document.getElementById("terningNr3").style.backgroundColor = "";
+                document.getElementById("terningNr3").style.color = "black";
+                document.getElementById("terningNr4").style.backgroundColor = "";
+                document.getElementById("terningNr4").style.color = "black";
+                document.getElementById("terningNr5").style.backgroundColor = "";
+                document.getElementById("terningNr5").style.color = "black";
+
+            }
+
+            //Når man trykker på checkboxen så vil terningene bytte farge, de bytter da til blå, 
+            //slik at man enklet ser hvilke man holder igjen
+            function byttFarge() {
+
+                if (checkBox1.checked == true) {
+                    document.getElementById("terningNr1").style.backgroundColor = "rgb(83, 83, 255)";
+                    document.getElementById("terningNr1").style.color = "white"
+                }
+                else {
+                    document.getElementById("terningNr1").style.backgroundColor = "";
+                    document.getElementById("terningNr1").style.color = ""
+
+                }
+
+                if (checkBox2.checked == true) {
+                    document.getElementById("terningNr2").style.backgroundColor = "rgb(83, 83, 255)";
+                    document.getElementById("terningNr2").style.color = "white"
+                }
+                else {
+                    document.getElementById("terningNr2").style.backgroundColor = "";
+                    document.getElementById("terningNr2").style.color = ""
+
+                }
+
+                if (checkBox3.checked == true) {
+                    document.getElementById("terningNr3").style.backgroundColor = "rgb(83, 83, 255)";
+                    document.getElementById("terningNr3").style.color = "white"
+                }
+                else {
+                    document.getElementById("terningNr3").style.backgroundColor = "";
+                    document.getElementById("terningNr3").style.color = ""
+
+                }
+                if (checkBox4.checked == true) {
+                    document.getElementById("terningNr4").style.backgroundColor = "rgb(83, 83, 255)";
+                    document.getElementById("terningNr4").style.color = "white"
+                }
+                else {
+                    document.getElementById("terningNr4").style.backgroundColor = "";
+                    document.getElementById("terningNr4").style.color = ""
+
+                }
+                if (checkBox5.checked == true) {
+                    document.getElementById("terningNr5").style.backgroundColor = "rgb(83, 83, 255)";
+                    document.getElementById("terningNr5").style.color = "white";
+                }
+                else {
+                    document.getElementById("terningNr5").style.backgroundColor = "";
+                    document.getElementById("terningNr5").style.color = "";
+
+                }
+
+
+
+            }
+
+            //Denne funksjonen gjør slik at vi kan sette inn verdiene terningene viser, fra 1-6.
+            // Den finner antall ganger terningVerdi finnes i terningVerdier-arrayet og
+            // Oppdaterer verdien i tabellen basert på antall ganger terningVerdi ble funnet
+            //etter de har satt verdien, tilbakestilles terningene
+            function settTallEnTilSeks(terningVerdi, person) {
+                const terningVerdier = [
+                    document.getElementById("terningNr1").innerHTML,
+                    document.getElementById("terningNr2").innerHTML,
+                    document.getElementById("terningNr3").innerHTML,
+                    document.getElementById("terningNr4").innerHTML,
+                    document.getElementById("terningNr5").innerHTML
+                ]
+
+                function sjekkAntall(array, nummer) {
+                    return array.filter((v) => (v == nummer)).length;
+                }
+
+                let antallAvTerning = sjekkAntall(terningVerdier, terningVerdi);
+
+                radArray[terningVerdi][person].innerHTML = antallAvTerning * terningVerdi;
+
+                restartTerningene();
+                checkBoxAv();
+                summer(person);
+            }
+
+            //Denne funksjonen summerer svarene fra 1-6 og sjkekr om summen er større en 63
+            // er den det får man tiløfrt 50 ekstra poeng.
+            function summer(person) {
+                const verdierScore1Til6 = [
+                    Number(radArray[1][person].innerHTML), //0 i verdierScore1Til6
+                    Number(radArray[2][person].innerHTML), //1  ----- II ---------
+                    Number(radArray[3][person].innerHTML), //2  ----- II ---------
+                    Number(radArray[4][person].innerHTML), //3  ----- II ---------
+                    Number(radArray[5][person].innerHTML), //4  ----- II ---------
+                    Number(radArray[6][person].innerHTML)  //5  ----- II ---------
+                ]
+                let sumScore1Til6 = verdierScore1Til6[0] + verdierScore1Til6[1] + verdierScore1Til6[2] + verdierScore1Til6[3] + verdierScore1Til6[4] + verdierScore1Til6[5];
+
+                radArray[7][person].innerHTML = sumScore1Til6;
+
+                if (sumScore1Til6 >= 63) {
+                    radArray[8][person].innerHTML = 50
+                }
+                else {
+                    radArray[8][person].innerHTML = 0
+                }
+            }
+
+            //I denne funskjonen ser den etter like tenringer, den bruker derfor
+            //hjelpefunksjonen sjekkAntall for å telle antallet forekomster av hver terningverdi 
+            //i terningVerdier-arrayet. Hvis antallet er større eller lik 2 for en terningverdi, 
+            //blir rad 9 oppdatert med verdien av terningverdien multiplisert med 2. Hvis det ikke 
+            //finnes et par, forblir verdien 0
+            function ettPar(person) {
+                const terningVerdier = [
+                    document.getElementById("terningNr1").innerHTML,
+                    document.getElementById("terningNr2").innerHTML,
+                    document.getElementById("terningNr3").innerHTML,
+                    document.getElementById("terningNr4").innerHTML,
+                    document.getElementById("terningNr5").innerHTML
+                ]
+
+                function sjekkAntall(array, nummer) {
+                    return array.filter((v) => (v == nummer)).length;
+                }
+
+                radArray[9][person].innerHTML = 0;
+
+                let terningVerdi = 0;
+                while (terningVerdi <= 6) {
+                    var antall = sjekkAntall(terningVerdier, terningVerdi);
+                    if (antall >= 2) {
+                        radArray[9][person].innerHTML = terningVerdi * 2;
+                    }
+                    terningVerdi++;
+                }
+
+                restartTerningene();
+                checkBoxAv();
+
+            }
+
+            //I denen funskjonen skjer det samme, som obver bare at den nå ser etter to par av terningene.
+            //Finner den ikke dette i arrayet, vil verdien forbli 0 og terningene blir tilbakestilt
+            function toPar(person) {
+                const terningVerdier = [
+                    document.getElementById("terningNr1").innerHTML,
+                    document.getElementById("terningNr2").innerHTML,
+                    document.getElementById("terningNr3").innerHTML,
+                    document.getElementById("terningNr4").innerHTML,
+                    document.getElementById("terningNr5").innerHTML
+                ]
+
+                function sjekkAntall(array, nummer) {
+                    return array.filter((v) => (v == nummer)).length;
+                }
+
+                radArray[10][person].innerHTML = 0;
+
+                let terningVerdi1 = 0;
+                let terningVerdi2 = 0;
+                while (terningVerdi1 <= 6 && terningVerdi2 <= 6) {
+                    var antall1 = sjekkAntall(terningVerdier, terningVerdi1);
+                    var antall2 = sjekkAntall(terningVerdier, terningVerdi2);
+                    if (antall1 && antall2 >= 2) {
+                        radArray[10][person].innerHTML = (terningVerdi1 + terningVerdi2) * 2;
+                    }
+                    terningVerdi1++ && terningVerdi2++;
+                }
+
+                restartTerningene();
+                checkBoxAv();
+
+            }
+
+
+            //Når man trykker på knappen "lagre", så brukes denne funksjonen. 
+            //Den printer inputene i de fire kolonnene ved siden av og skriver navnet inn i tabellen. 
+            function navnLagre() {
+                radArray[0][1].innerHTML = document.getElementById("input1").value;
+                radArray[0][2].innerHTML = document.getElementById("input2").value;
+                radArray[0][3].innerHTML = document.getElementById("input3").value;
+                radArray[0][4].innerHTML = document.getElementById("input4").value;
+            }
+
+
+
+
+
+        </script>
+</body>
+
+</html>
